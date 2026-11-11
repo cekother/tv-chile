@@ -5,6 +5,7 @@ const { icon } = require('./png');
 const playlistPath = process.argv[2] ?? path.join(__dirname, '..', 'canales.m3u');
 const outDir = process.argv[3] ?? path.join(__dirname, '..');
 
+const MOVIES = 'Películas y series';
 const ENTERTAINMENT = 'Entretenimiento';
 const CULTURE = 'Cultura y educación';
 const NORTH = 'Regiones norte';
@@ -16,7 +17,7 @@ const RELIGION = 'Religión';
 
 // Categoría según el group-title de la lista; lo que no aparece aquí queda como regional.
 const GROUP_NAMES = {
-  Nacionales: 'Nacionales', News: 'Noticias', Legislative: 'Noticias', Sports: 'Deportes',
+  Nacionales: 'Nacionales', Peliculas: MOVIES, News: 'Noticias', Legislative: 'Noticias', Sports: 'Deportes',
   Animation: 'Infantil', Kids: 'Infantil',
   Entertainment: ENTERTAINMENT, Family: ENTERTAINMENT, Movies: ENTERTAINMENT, Series: ENTERTAINMENT,
   Comedy: ENTERTAINMENT, Classic: ENTERTAINMENT, Lifestyle: ENTERTAINMENT, Cooking: ENTERTAINMENT,
@@ -44,7 +45,7 @@ const BY_NAME = {
   'Mundos Lacustres TV': SOUTH, 'SUR TV': SOUTH, 'Surena TV': SOUTH, 'Coyhaique TV': SOUTH,
   'ITV Patagonia': SOUTH, 'Polar TV (Chile)': SOUTH, 'Santa Maria Television': SOUTH,
 };
-const GROUP_ORDER = ['Nacionales', 'Noticias', 'Deportes', ENTERTAINMENT, 'Infantil', CULTURE,
+const GROUP_ORDER = ['Nacionales', 'Noticias', 'Deportes', MOVIES, ENTERTAINMENT, 'Infantil', CULTURE,
   NORTH, CENTER, SOUTH, REGIONAL, 'Música', RADIO, RELIGION];
 
 function groupOf(name, rawGroup) {

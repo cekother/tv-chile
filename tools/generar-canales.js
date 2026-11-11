@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const zlib = require('zlib');
+const { icon } = require('./png');
 
 const playlistPath = process.argv[2] ?? path.join(__dirname, '..', 'canales.m3u');
 const outDir = process.argv[3] ?? path.join(__dirname, '..');
@@ -43,49 +43,8 @@ for (const line of lines) {
   }
 }
 channels.sort((a, b) => rank(a.group) - rank(b.group) || a.group.localeCompare(b.group, 'es'));
-fs.writeFileSync(path.join(outDir, 'channels.json'), JSON.stringify(channels));
+fs.writeFileSync(path.join(outDir, 'channels.js'), 'window.CANALES = ' + JSON.stringify(channels) + ';\n');
 
-function crc32(buf) {
-  let c = ~0;
-  for (const byte of buf) {
-    c ^= byte;
-    for (let k = 0; k < 8; k++) c = (c >>> 1) ^ (0xedb88320 & -(c & 1));
-  }
-  return ~c >>> 0;
-}
-function chunk(type, data) {
-  const head = Buffer.alloc(4);
-  head.writeUInt32BE(data.length);
-  const body = Buffer.concat([Buffer.from(type), data]);
-  const tail = Buffer.alloc(4);
-  tail.writeUInt32BE(crc32(body));
-  return Buffer.concat([head, body, tail]);
-}
-function icon(size) {
-  const raw = Buffer.alloc((size * 3 + 1) * size);
-  const bg = [14, 17, 22];
-  const fg = [255, 176, 32];
-  const x0 = size * 0.38, x1 = size * 0.7, cy = size * 0.5, half = size * 0.2;
-  for (let y = 0; y < size; y++) {
-    const row = y * (size * 3 + 1);
-    for (let x = 0; x < size; x++) {
-      const t = (x - x0) / (x1 - x0);
-      const inside = t >= 0 && t <= 1 && Math.abs(y - cy) <= half * (1 - t);
-      const [r, g, b] = inside ? fg : bg;
-      raw.set([r, g, b], row + 1 + x * 3);
-    }
-  }
-  const ihdr = Buffer.alloc(13);
-  ihdr.writeUInt32BE(size, 0);
-  ihdr.writeUInt32BE(size, 4);
-  ihdr.set([8, 2, 0, 0, 0], 8);
-  return Buffer.concat([
-    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
-    chunk('IHDR', ihdr),
-    chunk('IDAT', zlib.deflateSync(raw)),
-    chunk('IEND', Buffer.alloc(0)),
-  ]);
-}
 fs.writeFileSync(path.join(outDir, 'icon-192.png'), icon(192));
 fs.writeFileSync(path.join(outDir, 'icon-512.png'), icon(512));
 

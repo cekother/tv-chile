@@ -7,7 +7,7 @@ const { icon } = require('./png');
 const ROOT = path.join(__dirname, '..');
 const BUILD = path.join(ROOT, 'build');
 const DIST = path.join(ROOT, 'dist');
-const WEB_FILES = ['index.html', 'hls.min.js', 'channels.js', 'icon-192.png', 'icon-512.png'];
+const WEB_FILES = ['index.html', 'hls.min.js', 'channels.js', 'logos.js', 'icon-192.png', 'icon-512.png'];
 
 const JAVA_HOME = process.env.JAVA_HOME || 'C:/aw/jdk';
 const ANDROID_HOME = process.env.ANDROID_HOME || 'C:/aw/android-sdk';

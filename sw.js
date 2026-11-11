@@ -1,5 +1,5 @@
-const CACHE = 'tv-chile-v2';
-const SHELL = ['./', 'hls.min.js', 'channels.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
+const CACHE = 'tv-chile-v3';
+const SHELL = ['./', 'hls.min.js', 'channels.js', 'logos.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)));

@@ -64,7 +64,7 @@ for (const line of lines) {
   if (line.startsWith('#EXTINF')) {
     const rawGroup = (line.match(/group-title="([^"]*)"/)?.[1] ?? '').split(';')[0];
     const name = line.replace(/^.*,/, '').replace(/\s*\(\d+[pi]\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim();
-    current = { name, group: groupOf(name, rawGroup) };
+    current = { name, group: groupOf(name, rawGroup), logo: line.match(/tvg-logo="(https:[^"]*)"/)?.[1] };
   } else if (current && line.startsWith('#EXTVLCOPT')) {
     current.needsHeaders = true;
   } else if (current && line.trim() && !line.startsWith('#')) {
@@ -72,7 +72,7 @@ for (const line of lines) {
     if (current.needsHeaders) skipped.headers.push(current.name);
     else if (!current.url.startsWith('https://')) skipped.http.push(current.name);
     else if (BAD_CERT.includes(current.name)) skipped.cert.push(current.name);
-    else channels.push({ name: current.name, group: current.group, url: current.url });
+    else channels.push({ name: current.name, group: current.group, url: current.url, logo: current.logo });
     current = null;
   }
 }

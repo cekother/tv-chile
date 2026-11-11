@@ -421,3 +421,155 @@ https://h.jcp.live.opencaster.com/play_src/index.m3u8
 https://3ea22335.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWdiX1JlZEJ1bGxUVl9ITFM/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://images.pluto.tv/channels/5e7cb84a172a0f0007da69e4/colorLogoPNG.png" group-title="Sports",Red Bull TV ES
 https://886bd3fbc782459f8de7555d32d7e9ce.mediatailor.us-west-2.amazonaws.com/v1/master/ba62fe743df0fe93366eba3a257d792884136c7f/LINEAR-957-WORBLATAMESFAST-WHALETVPLUS/957/whaletvplus/hls/master/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/5X20hxjL/KN-copia-4.png" group-title="Sports",Eventos Tigo
+https://stmv3.voxtvhd.com.br/toptop/toptop/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/5X20hxjL/KN-copia-4.png" group-title="Sports",Eventos PY
+https://play-fulltv.com.ar/playtvpre/eventos001.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/5X20hxjL/KN-copia-4.png" group-title="Sports",Eventos 2 PY
+https://play-fulltv.com.ar/playtvpre/eventos002.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/5X20hxjL/KN-copia-4.png" group-title="Sports",Tigo Sports 24/7
+http://45.134.141.161:2200/ARG/Tigo_Sports/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/a/af/SNT_LOGO.jpg" group-title="Paraguay",SNT
+https://ddycmnicl95kp.cloudfront.net/live/25646ipbno2g/master.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/6lVrFvb.png" group-title="Paraguay",Telefuturo
+https://copacotf.desdeparaguay.net/telefuturo/telefuturo_py_alta/playlist.m3u8?admin=tvaccion
+#EXTINF:-1 tvg-logo="https://i.imgur.com/kEcOYML.png" group-title="Paraguay",Monumental 1080 AM
+https://rds3gen.desdeparaguay.net/monumentaltv/monumentaltv_med/playlist.m3u8?admin=tvaccion
+#EXTINF:-1 tvg-logo="https://i.ibb.co/sgRZXh9/NPY-Noticias-Paraguay.png" group-title="Paraguay",NPY
+https://rds3tf.desdeparaguay.net/npy/npy_int_alta/playlist.m3u8?admin=tvaccion
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR2g_asOsN2SyRS2jBzWLyuHtCjNAjYIVNRn-hiqu0zw&s=10" group-title="Paraguay",Trece
+http://45.184.109.10/live/69393EAE6ADBC65A68F942022362A202/82.m3u8
+#EXTINF:-1 tvg-logo="https://iptvstudio.pages.dev/logos/paraguay/unicanal.png" group-title="Paraguay",Unicanal
+http://45.184.109.10/live/69393EAE6ADBC65A68F942022362A202/72.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/hfFmYXz/WW.jpg" group-title="Paraguay",Mega TV (Paraguay)
+https://www.desde-paraguay.com/mega.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0KeH_DRcDH-my7B90GpKy2o_pg0yhVCwnC-AfTgKPOg&s=10" group-title="Paraguay",Paraguay TV
+https://stream.paraguaytv.gov.py/memfs/bbe36fed-9b49-4d1d-adaa-4bd6d1b2e386.m3u8
+#EXTINF:-1 tvg-logo="https://www.desdeparaguay.com/images_hpy/logos/radios/90x90px2/pro.png" group-title="Paraguay",Canal Pro
+https://www.desde-paraguay.com/pro.m3u8
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/d9/Sur_TV_Itap%C3%BAa_logo_2022.png" group-title="Paraguay",Sur TV Itapúa
+http://45.184.109.10/live/69393EAE6ADBC65A68F942022362A202/1596.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/FXnvNPk/paravision.png" group-title="Paraguay",Paravisión
+http://45.184.109.10/live/69393EAE6ADBC65A68F942022362A202/120.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlZgi3dH4dGXTmCnl2WIU5_FDruZHUYhHE1yQNdJpEow&s=10" group-title="Paraguay",C9N
+https://ddycmnicl95kp.cloudfront.net/live/qnxsy62odjyb/master.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpW0nrQmGCRDxjlu3vedbv8JTwSvinBoemAZYpTIOMKQ&s=10" group-title="Paraguay",GEN
+http://45.184.109.10/live/69393EAE6ADBC65A68F942022362A202/1847.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/Zg861M4/latele.png" group-title="Paraguay",La Tele
+https://copacotf.desdeparaguay.net/latele/latele_py_alta/playlist.m3u8?admin=tvaccion
+#EXTINF:-1 tvg-logo="https://i.ibb.co/3TJQVdt/nandutitv.png" group-title="Paraguay",Ñandutí TV
+https://nanduti.b-cdn.net/Source.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/dGqjksf/descarga.png" group-title="Paraguay",ABC TV
+http://45.184.109.10/live/69393EAE6ADBC65A68F942022362A202/7.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/oMHiGRN.png" group-title="Paraguay",Hei
+https://copacogen.desdeparaguay.net/heitv/heitv_py_alta/playlist.m3u8?admin=nacion
+#EXTINF:-1 tvg-logo="https://i.imgur.com/857OkFf.png" group-title="Paraguay",Educanal
+https://cloudtv.streaming.com.py/educanalpy/educanalpy/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI2fu92BzpGT51fo_D33BCXw0LOQGYsLebIrQtFQKwgQ&s=10" group-title="Paraguay",Venus Media
+https://copacogen.desdeparaguay.net/venusmedia/venusmedia/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/MMYLRZV/rocka.png" group-title="Paraguay",Rock & Pop
+https://rds3gen.desdeparaguay.net/rockandpoptv/rockandpoptv_baja/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/jz9XkvP/e40.png" group-title="Paraguay",E40
+https://rds3tf.desdeparaguay.net/e40tv/e40tv_py_alta/playlist.m3u8?admin=tvaccion
+#EXTINF:-1 tvg-logo="https://i.ibb.co/99DzY4J/farra-play.png" group-title="Paraguay",Radio Farra
+https://stream.farra.com.py/live/farra.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/pK5SNMT/bruno-masi-tv.png" group-title="Paraguay",Bruno Masi TV
+https://rds3gen.desdeparaguay.net/brunomasitv/brunomasitv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/c2rF3SS.png" group-title="Paraguay",Next
+https://live.enhdtv.com:19360/nexthd/nexthd.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/Vw7gVWz/4d-noticias.png" group-title="Paraguay",4D Más Noticias
+https://rds3gen.desdeparaguay.net/4dmasnoticiastv/4dmasnoticiastv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/sJRyc31/aspen-classic.png" group-title="Paraguay",Aspen
+https://rds3gen.desdeparaguay.net/aspentv/aspentv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/No9YzNC.png" group-title="Paraguay",Unión TV
+https://rds3gen.desdeparaguay.net/800tv/800tv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCsocfQtHbssuQB49mOi3jkeR8oH-sHddE5Ry2HH_nxmo_lhZ3U7nU107P&s=10" group-title="Paraguay",Radio República 101.3 FM
+https://rds3gen.desdeparaguay.net/republicatv/republicatv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfUBbH49dP7YGSmYaWY_Vwgg7OKvJ4QTnaJ1gvCW5jOw&s=10" group-title="Paraguay",Productiva TV
+https://rds3gen.desdeparaguay.net/productivatv/productivatv_baja/chunklist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/0nRfZNd/canal12regional.png" group-title="Paraguay",Canal 12 Regional TV
+https://video.hostingcaaguazu.com:19360/regionaltv/regionaltv.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/6RqpxYR/mitv.png" group-title="Paraguay",Mi TV Itapúa
+https://rds3gen.desdeparaguay.net/mitv/mitv/playlist.m3u8?admin=mitvitapua
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVHa-ueinqVx_A96FyJeTczE56yKBGrTFtyg8PA_k0eg&s=10" group-title="Paraguay",Visión TV Villarrica
+https://rds3gen.desdeparaguay.net/satelitaltv/satelitaltv/chunklist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfUBbH49dP7YGSmYaWY_Vwgg7OKvJ4QTnaJ1gvCW5jOw&s=10" group-title="Paraguay",Cáritas TV
+https://rds3gen.desdeparaguay.net/caritastv/caritastv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjtnV_mSgh3_41dMG3e1Wyv09S6uEI6NGb5DKBsITumA&s=10" group-title="Paraguay",Ñandejara Ñe'e TV
+https://rds3gen.desdeparaguay.net/nandejaraneetv/nandejaraneetv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://yt3.googleusercontent.com/XOx7P3g2qonS4NFT7LfAZWBazUKoXUo6liMfqM2wP0SSafroFtQ5ylOg1-wn_pmNWip3eaDaU2o=s900-c-k-c0x00ffffff-no-rj" group-title="Paraguay",RCC
+https://rds3.desdeparaguay.net/rcctv/rcctv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsCH8N-gMcDgYciwiqMYruF8qq4-RRg28QqgcfpZ8rjw&s=10" group-title="Paraguay",TV Chaqueña
+https://rds3gen.desdeparaguay.net/tvchaquena/tvchaquena/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBHjoxPHrtLcDBykodEc3e9IMjpLm4zzyF3LBrAvAOJg&s=10" group-title="Paraguay",TVA Coronel Oviedo
+https://video.hostingcaaguazu.com:19360/tvairepy/tvairepy.m3u8
+#EXTINF:-1 tvg-logo="https://wwwimage-us.plutostatic.tv/thumbnails/photos/w400-q80/ptv/channels/5dcde07af1c85b0009b18651/colorLogoPNG_1766080575034.png?format=webp&trim=true" group-title="Sports",Pluto TV Deportes
+https://jmp2.uk/plu-5dcde07af1c85b0009b18651.m3u8
+#EXTINF:-1 tvg-logo="https://images.pluto.tv/channels/63c6e37e636b7e0007ccb635/colorLogoPNG.png" group-title="Sports",Pluto TV Fútbol
+https://jmp2.uk/plu-63c6e37e636b7e0007ccb635.m3u8?appName=web
+#EXTINF:-1 tvg-logo="https://images.fubo.tv/channel-config-ui/station-logos/on-white/bein-sports-xtra-en-espanol-main-copy.png" group-title="Sports",beIN Sports Xtra en Español
+https://bein-esp-xumo.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMQ5Ho-kHmogi_PzgR205SUuIajQW4FAIGSO33cIcIXQ&s=10" group-title="Sports",TyC Sports
+https://live-04-11-tyc-app-web.vodgc.net/tyc24/index.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMQ5Ho-kHmogi_PzgR205SUuIajQW4FAIGSO33cIcIXQ&s=10" group-title="Sports",TyC Sports Fan
+https://streams2.sofast.tv/ptnr-hispasat/title-TYC-SPORTS-LATMA/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/18a85327-6b17-4d41-8c2f-41ff8511c1dd/sofastplayout/2f7c083c-a970-4cd4-a634-0b56fed45495/manifest.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/6chwhjB2/claro-sports.png" group-title="Sports",Claro Sports
+https://dai.google.com/linear/hls/event/_OKWx76jT7mivD6d-25QAw/master.m3u8
+#EXTINF:-1 tvg-logo="https://media.tvup.cloud/canales/color_lg_5c4352438c3e78047f57c408.png" group-title="Sports",Red Bull TV Latam
+https://8b35224b42fd4ae797ea4d8b205f8368.mediatailor.us-west-2.amazonaws.com/v1/master/ba62fe743df0fe93366eba3a257d792884136c7f/LINEAR-957-WORBLATAMESFAST-VIDAA/957/vidaa/hls/master/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.postimg.cc/WtLq2C7c/logo-Rally-Tv1.png" group-title="Sports",Rally TV
+https://dms.redbull.tv/v5/destination/rallytv/07f960dc-fd36-466c-971f-64a597518b83/personal_computer/http/us/es_US/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/oT5CAvd.png" group-title="Sports",Zona TUDN
+https://4fd7193b903d414f925451792be9753a.mediatailor.us-west-2.amazonaws.com/v1/master/ba62fe743df0fe93366eba3a257d792884136c7f/LINEAR-357-ZONATUDNUS-VIZIO/mt/vizio/357/hls/master/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/WpzKSZb8/band.png" group-title="Sports",Band
+https://cdn.live.br1.jmvstream.com/w/LVW-15748/LVW15748_Yed7yzLuRC/chunklist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/WWrRh4X/Band-Sports.png" group-title="Sports",Band Sports
+http://45.162.64.114/BAND_SPORTS/index.m3u8
+#EXTINF:-1 tvg-logo="https://images.pluto.tv/channels/5f32d2db0af67400077f29c4/colorLogoSVG.svg" group-title="Sports",Pluto TV Esportes
+https://jmp2.uk/plu-5f32d2db0af67400077f29c4.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5P7xlzzw17nkpoS9IZz2YdcedPwz3vSNybJ4vhHjypw&s=10" group-title="Sports",N Sports
+https://ogc-nsprt-tcl-roku-syndication.otteravision.com/ogc/nsprt/nsprt_1080p.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw9bIiyU2pG82OdoafVZgaRH4H1ZMWefDafwNh9QaKCA&s" group-title="Sports",GE TV
+https://dfr80qz435crc.cloudfront.net/EFGH/Amagi/Globo/GE_Fast_BR/GE_Fast.m3u8
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1280px-CNN.svg.png" group-title="News",CNN
+https://amg00803-cnnfast-amg00803c3-lg-es-5477.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4ZZaacRJ1zu8hYr0JbsXYjegg-a50qoXDpebdcb4sNw&s=10" group-title="News",France 24
+https://live-evg8.tv360.bitel.com.pe/bitel/france24SRT/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://images.pluto.tv/channels/619d59b7cbef25000728221c/thumbnail.jpg?auto=&ixlib=react-9.1.5&w=224&h=124&dpr=2&q=50" group-title="News",Euronews
+https://cdn-euronews.akamaized.net/live/eds/euronews-es/25053/euronews-es-avc1_3300000=19-mp4a_143200_esp=27.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROqeNhkPiXfQn4BskmhwJ5x8cak0hW4oHtiFYPctzFmQ&s" group-title="News",DW Español
+https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/JHv0WxM.png" group-title="Culture",CGTN Documentary
+https://amg00405-rakutentv-cgtndocumentary-rakuten-0ql8j.amagi.tv/master.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/VUy8xIG.png" group-title="Culture",Historia
+https://d1k3vzh2ivy22k.cloudfront.net/Historia.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/L1h6W5Q.png" group-title="Peliculas",AMC en Español
+https://amc-amcespanol-1-us.plex.wurl.tv/4300.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgfC9OeMP8ZuU_GwlxwCQSSIF7_h5TD8vCM45ZR-nvs0iTncF_PCW-b7E&s=10" group-title="News",CGTN Español
+https://amg01314-cgtn-amg01314c3-rakuten-uk-1318.playouts.now.amagi.tv/cgtn-es-rakuten/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj6Qy-PPHXUAnLvysB0BtxNhvWyTpcCzFWXdL6jYO-og&s=10" group-title="Peliculas",BBC Series
+https://amg00793-amg00793c40-rakuten-es-5444.playouts.now.amagi.tv/playlist/amg00793-bbcstudios-bbcdramaspain-rakutenes/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5QcDkoYnerdi1LhNIHNfngtzmeZMmVXhCYRhHW_WKkg&s=10" group-title="Peliculas",Canal ViX
+https://d36vag51su2f9u.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-rjlh25phsoano/server/distrib/7GnqnNT9v6Prt6lj/zuvPJYoOOdEMDNF2j2mvmg.XD-5XW7bmDpD5yWfV328oU9NWPX1Y7dhiYqJY3ymkerRKjKvBm9YaKmRu09CS8ak3vKkgVwPUO3_k0fGhRTEqiM6VVMAQRZ3BajxAKTNLztc3UzxLEvwclMk_xuZaPti2iQdDj7x8B9VIacgVxB6nPh8e9-_CaBQXtdfGZ-hf5fbtm5YEJTk8bxZMjA7NHu0J1zj4SG_9elXTTj4sJ5PP8hj9EcpM_08XHwoobu1NQTtftlO8dfbnTpEQrG7AlU7Z82dozEUrKZJxDjrjsMtug/manifest.m3u8
+#EXTINF:-1 tvg-logo="https://tse1.mm.bing.net/th/id/OIP.cz3dWFe5nyXVR46GXjNdegHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" group-title="Peliculas",Grjngo
+https://amogonetworx-grjngo-2-eu.plex.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE7Vt4A-LYDjn5yc-gSQRIUwsxziEL0IODS1TmbBImXQ&s=10" group-title="Peliculas",Star TVE
+https://rtvelivestream-rtveplayplus.rtve.es/rtvesec/int/star_main_dvr_1080.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKtR6DAhB8R9643xeX4SeStMOv8R-LfjqNN7UC5yyazw&s=10" group-title="Novelas",Telemundo
+https://barinaslive1.boldmss.com/TELEMUNDO/TELEMUNDO.isml/TELEMUNDO.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJcEVrzPoY4xlQByM719uO3YbYI7GqAnvgF5UmTHjGtw&s=10" group-title="Novelas",Univision
+https://barinaslive1.boldmss.com/UNIVISION/UNIVISION.isml/UNIVISION.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzP0S2SHuRBryss2xWYDnZ1R-XkiqnYTCZPsJVPVG4rg&s=10" group-title="Novelas",RCN Más
+https://rcntv-rcnmas-1-us.plex.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBYOcESKTND71ZxEc0juz5Cx9tzlqlbj3gnzxrEXdfIA&s=10" group-title="Novelas",RCN Novelas
+https://cdnlive.klicgo.net/rcnnovelas/live/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKtR6DAhB8R9643xeX4SeStMOv8R-LfjqNN7UC5yyazw&s=10" group-title="Novelas",Telemundo Acción
+https://xumo-drct-ch835-ekq0p.fast.nbcuni.com/live/master_1.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw6TLw_RmJcZ0TRAxBqOlB7syYm8Q8yKqtdMPRVWcrRA&s=10" group-title="Novelas",Telemundo Telenovelas Clásicas
+https://jmp2.uk/plu-5cf96cc422df39f1a338d165.m3u8
+#EXTINF:-1 tvg-logo="https://images.pluto.tv/channels/60b4c06717da110007ee1af6/colorLogoSVG_1733440520243.svg" group-title="Novelas",Pluto TV Novelas
+https://jmp2.uk/plu-5dcde0cc2efd2700090b7ff4.m3u8
+#EXTINF:-1 tvg-logo="https://images.pluto.tv/channels/662a69daa0a74e00087a1c72/colorLogoSVG.svg" group-title="Novelas",Pluto TV Telenovelas Clásicas
+https://jmp2.uk/plu-662a69daa0a74e00087a1c72.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0fr4PMQf3bl31hqQlr69nL4BqUXrnqG6yVK_PRqdwig&s" group-title="Novelas",Pluto TV Novelas de México
+https://jmp2.uk/plu-6474a7958e3c0a0008b97cae.m3u8

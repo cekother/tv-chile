@@ -5,20 +5,55 @@ const { icon } = require('./png');
 const playlistPath = process.argv[2] ?? path.join(__dirname, '..', 'canales.m3u');
 const outDir = process.argv[3] ?? path.join(__dirname, '..');
 
-const GROUP_NAMES = {
-  Nacionales: 'Nacionales', General: 'General', News: 'Noticias', Sports: 'Deportes',
-  Animation: 'Infantil', Kids: 'Infantil', Family: 'Familia', Movies: 'Cine', Series: 'Series',
-  Entertainment: 'Entretenimiento', Comedy: 'Humor', Music: 'Música', Culture: 'Cultura',
-  Documentary: 'Documentales', Education: 'Educación', Science: 'Ciencia', Religious: 'Religión',
-  Legislative: 'Legislativo', Lifestyle: 'Estilo de vida', Travel: 'Viajes', Outdoor: 'Aire libre',
-  Cooking: 'Cocina', Business: 'Negocios', Classic: 'Clásicos', Shop: 'Compras', Auto: 'Motor',
-  Relax: 'Relax', Weather: 'Clima',
-};
-const GROUP_ORDER = ['Nacionales', 'General', 'Noticias', 'Deportes'];
-const OTHER = 'Otros';
-const BAD_CERT = ['Arica TV', 'Juntos TV (Chile)'];
+const ENTERTAINMENT = 'Entretenimiento';
+const CULTURE = 'Cultura y educación';
+const NORTH = 'Regiones norte';
+const CENTER = 'Regiones centro';
+const SOUTH = 'Regiones sur y Patagonia';
+const REGIONAL = 'Otros regionales';
+const RADIO = 'Radios';
+const RELIGION = 'Religión';
 
-const rank = (g) => (GROUP_ORDER.includes(g) ? GROUP_ORDER.indexOf(g) : g === OTHER ? 1000 : 100);
+// Categoría según el group-title de la lista; lo que no aparece aquí queda como regional.
+const GROUP_NAMES = {
+  Nacionales: 'Nacionales', News: 'Noticias', Legislative: 'Noticias', Sports: 'Deportes',
+  Animation: 'Infantil', Kids: 'Infantil',
+  Entertainment: ENTERTAINMENT, Family: ENTERTAINMENT, Movies: ENTERTAINMENT, Series: ENTERTAINMENT,
+  Comedy: ENTERTAINMENT, Classic: ENTERTAINMENT, Lifestyle: ENTERTAINMENT, Cooking: ENTERTAINMENT,
+  Shop: ENTERTAINMENT, Auto: ENTERTAINMENT, Relax: ENTERTAINMENT,
+  Culture: CULTURE, Documentary: CULTURE, Education: CULTURE, Science: CULTURE, Travel: CULTURE,
+  Outdoor: CULTURE, Business: CULTURE, Weather: CULTURE,
+  Music: 'Música', Religious: RELIGION,
+};
+// Canales cuya categoría de origen no sirve: se ubican por nombre.
+const BY_NAME = {
+  'TV+': 'Nacionales',
+  'CHV Noticias': 'Noticias', '24 Horas': 'Noticias', Cooperativa: 'Noticias', 'Bio Bio TV': 'Noticias',
+  'TV Senado (Chile)': 'Noticias',
+  'TCM Latin America Chile': ENTERTAINMENT, 'Tendencias Prime': ENTERTAINMENT, 'EPA! TV': ENTERTAINMENT,
+  CampusTV: CULTURE, 'TV UCT': CULTURE, TVU: CULTURE,
+  'Antofagasta TV': NORTH, 'Caldera Vision': NORTH, 'Iquique TV': NORTH, 'Maray TV': NORTH,
+  'Holvoet TV': NORTH, 'Thema Television': NORTH,
+  'Marga Marga TV': CENTER, 'Canal 30 Loncomilla': CENTER, 'En Linea Maule': CENTER,
+  'Lila TV Pencahue': CENTER, 'TV5 Linares': CENTER, 'Pichilemu TV': CENTER,
+  'VTV Valle de Aconcagua': CENTER, 'Estacion Limache TV': CENTER, 'TVR (Chile)': CENTER, 'Islita TV': CENTER,
+  'Aysen TV': SOUTH, 'Canal 1 Nuble': SOUTH, 'RTV Nuble': SOUTH, 'San Nicolas TV': SOUTH,
+  'Concepcion TV': SOUTH, 'El 3 de Conce': SOUTH, 'Canal 9 Bio-Bio Television': SOUTH, Teleangol: SOUTH,
+  'Pucon TV': SOUTH, 'Canal 5 Puerto Montt': SOUTH, 'Decima TV': SOUTH, 'Canal Chilote': SOUTH,
+  'Chiloe Red 25': SOUTH, 'Canal 2 Quellon': SOUTH, 'Canal Survision Alerce': SOUTH,
+  'Mundos Lacustres TV': SOUTH, 'SUR TV': SOUTH, 'Surena TV': SOUTH, 'Coyhaique TV': SOUTH,
+  'ITV Patagonia': SOUTH, 'Polar TV (Chile)': SOUTH, 'Santa Maria Television': SOUTH,
+};
+const GROUP_ORDER = ['Nacionales', 'Noticias', 'Deportes', ENTERTAINMENT, 'Infantil', CULTURE,
+  NORTH, CENTER, SOUTH, REGIONAL, 'Música', RADIO, RELIGION];
+
+function groupOf(name, rawGroup) {
+  if (BY_NAME[name]) return BY_NAME[name];
+  const group = GROUP_NAMES[rawGroup] ?? REGIONAL;
+  if (group !== RELIGION && /\bradio\b|\bFM\b/i.test(name)) return RADIO;
+  return group;
+}
+const BAD_CERT = ['Arica TV', 'Juntos TV (Chile)'];
 
 const lines = fs.readFileSync(playlistPath, 'utf8').split(/\r?\n/);
 const channels = [];
@@ -27,10 +62,8 @@ let current = null;
 for (const line of lines) {
   if (line.startsWith('#EXTINF')) {
     const rawGroup = (line.match(/group-title="([^"]*)"/)?.[1] ?? '').split(';')[0];
-    current = {
-      name: line.replace(/^.*,/, '').replace(/\s*\(\d+[pi]\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim(),
-      group: GROUP_NAMES[rawGroup] ?? OTHER,
-    };
+    const name = line.replace(/^.*,/, '').replace(/\s*\(\d+[pi]\)/g, '').replace(/\s*\[[^\]]*\]/g, '').trim();
+    current = { name, group: groupOf(name, rawGroup) };
   } else if (current && line.startsWith('#EXTVLCOPT')) {
     current.needsHeaders = true;
   } else if (current && line.trim() && !line.startsWith('#')) {
@@ -42,7 +75,7 @@ for (const line of lines) {
     current = null;
   }
 }
-channels.sort((a, b) => rank(a.group) - rank(b.group) || a.group.localeCompare(b.group, 'es'));
+channels.sort((a, b) => GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group));
 fs.writeFileSync(path.join(outDir, 'channels.js'), 'window.CANALES = ' + JSON.stringify(channels) + ';\n');
 
 fs.writeFileSync(path.join(outDir, 'icon-192.png'), icon(192));

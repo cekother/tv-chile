@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0e1116">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TV Chile</title>
+<style>
+  :root {
+    --panel: rgba(14, 17, 22, 0.96);
+    --line: rgba(255, 255, 255, 0.1);
+    --text: #f2f4f7;
+    --muted: #98a2b3;
+    --accent: #ffb020;
+    --danger: #ff6b5e;
+    --top: env(safe-area-inset-top, 0px);
+    --bottom: env(safe-area-inset-bottom, 0px);
+    --left: env(safe-area-inset-left, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; background: #000; color: var(--text);
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif; overflow: hidden;
+    overscroll-behavior: none; user-select: none; -webkit-user-select: none; }
+  video { position: fixed; inset: 0; width: 100%; height: 100%; background: #000; object-fit: contain; }
+  #stage { position: fixed; inset: 0; touch-action: none; z-index: 1; }
+
+  #menu-btn { position: fixed; top: calc(var(--top) + 14px); left: calc(var(--left) + 14px); z-index: 2;
+    min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--panel); color: var(--text); font: inherit; font-size: 15px; font-weight: 600; }
+  #unmute { position: fixed; top: calc(var(--top) + 14px); right: 14px; z-index: 2; min-height: 44px;
+    padding: 0 18px; border-radius: 999px; border: 0; background: var(--accent); color: #1a1200;
+    font: inherit; font-size: 15px; font-weight: 700; display: none; }
+  #unmute.show { display: block; }
+  #menu-btn, #osd { transition: opacity .25s, transform .25s; }
+  body.idle #menu-btn { opacity: 0; pointer-events: none; }
+
+  #osd { position: fixed; left: 14px; right: 14px; bottom: calc(var(--bottom) + 18px); z-index: 2;
+    display: flex; align-items: center; gap: 16px; max-width: 640px; padding: 14px 18px;
+    border-radius: 14px; background: var(--panel); border: 1px solid var(--line);
+    opacity: 0; transform: translateY(10px); pointer-events: none; }
+  #osd.show { opacity: 1; transform: none; }
+  #osd-num { font-size: 40px; font-weight: 800; line-height: 1; color: var(--accent);
+    font-variant-numeric: tabular-nums; }
+  #osd-text { min-width: 0; }
+  #osd-name { font-size: 19px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #osd-meta { margin-top: 3px; font-size: 13px; color: var(--muted); }
+  #osd-meta.error { color: var(--danger); }
+
+  #entry { position: fixed; top: calc(var(--top) + 70px); right: 14px; z-index: 2; padding: 6px 18px;
+    border-radius: 12px; background: var(--panel); border: 1px solid var(--line); font-size: 44px;
+    font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; display: none; }
+  #entry.show { display: block; }
+
+  #scrim { position: fixed; inset: 0; z-index: 3; background: rgba(0,0,0,.5); opacity: 0;
+    pointer-events: none; transition: opacity .2s; }
+  #panel { position: fixed; top: 0; left: 0; bottom: 0; z-index: 4; width: min(400px, 100vw);
+    display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line);
+    padding-top: var(--top); padding-left: var(--left);
+    transform: translateX(-100%); transition: transform .2s ease; }
+  body.panel-open #panel { transform: none; }
+  body.panel-open #scrim { opacity: 1; pointer-events: auto; }
+  #panel header { display: flex; gap: 10px; padding: 14px; border-bottom: 1px solid var(--line); }
+  #search { flex: 1; min-width: 0; height: 44px; padding: 0 14px; border-radius: 10px;
+    border: 1px solid var(--line); background: rgba(255,255,255,.07); color: var(--text);
+    font: inherit; font-size: 16px; outline: none; user-select: text; -webkit-user-select: text; }
+  #search:focus { border-color: var(--accent); }
+  #close { width: 44px; height: 44px; flex: none; border-radius: 10px; border: 1px solid var(--line);
+    background: none; color: var(--text); font-size: 20px; }
+  #list { flex: 1; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(var(--bottom) + 12px); }
+  .group { position: sticky; top: 0; z-index: 1; padding: 12px 16px 6px; font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: rgb(14,17,22); }
+  .ch { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 48px; padding: 6px 16px;
+    border: 0; background: none; color: var(--text); font: inherit; font-size: 16px; text-align: left; }
+  .ch:active { background: rgba(255,255,255,.08); }
+  .ch.current { background: rgba(255,176,32,.16); }
+  .ch .num { width: 34px; flex: none; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .ch.current .num { color: var(--accent); font-weight: 700; }
+  .ch .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #empty { padding: 24px 16px; color: var(--muted); font-size: 15px; }
+  #hint { padding: 10px 16px calc(var(--bottom) + 10px); border-top: 1px solid var(--line);
+    font-size: 12px; line-height: 1.6; color: var(--muted); }
+</style>
+</head>
+<body>
+<video id="video" playsinline webkit-playsinline></video>
+<div id="stage"></div>
+
+<button id="menu-btn" type="button">☰ Canales</button>
+<button id="unmute" type="button">Activar sonido</button>
+<div id="entry"></div>
+
+<div id="osd">
+  <div id="osd-num"></div>
+  <div id="osd-text">
+    <div id="osd-name"></div>
+    <div id="osd-meta"></div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+<aside id="panel">
+  <header>
+    <input id="search" type="search" placeholder="Buscar canal…" autocomplete="off">
+    <button id="close" type="button" aria-label="Cerrar">✕</button>
+  </header>
+  <div id="list"></div>
+  <div id="hint">Deslice hacia arriba o abajo para cambiar de canal, y hacia la derecha para abrir esta lista.</div>
+</aside>
+
+<script src="hls.min.js"></script>
+<script>
+const video = document.getElementById('video');
+const stage = document.getElementById('stage');
+const list = document.getElementById('list');
+const search = document.getElementById('search');
+const osd = document.getElementById('osd');
+const osdNum = document.getElementById('osd-num');
+const osdName = document.getElementById('osd-name');
+const osdMeta = document.getElementById('osd-meta');
+const entry = document.getElementById('entry');
+const unmute = document.getElementById('unmute');
+
+const SIGNAL_TIMEOUT_MS = 20000;
+const ENTRY_DELAY_MS = 1500;
+const SWIPE_MIN_PX = 50;
+const NATIVE_HLS = video.canPlayType('application/vnd.apple.mpegurl') !== '';
+
+let channels = [];
+let current = null;
+let previous = null;
+let hls = null;
+let tuneId = 0;
+let osdTimer = null;
+let signalTimer = null;
+let entryTimer = null;
+let idleTimer = null;
+let entryDigits = '';
+
+function remember(key, value) {
+  try { localStorage.setItem(key, value); } catch {}
+}
+function recall(key) {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+
+function wake() {
+  document.body.classList.remove('idle');
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => document.body.classList.add('idle'), 4000);
+}
+
+function showOsd(meta, isError = false, sticky = false) {
+  osdNum.textContent = current.number;
+  osdName.textContent = current.name;
+  osdMeta.textContent = meta;
+  osdMeta.classList.toggle('error', isError);
+  osd.classList.add('show');
+  clearTimeout(osdTimer);
+  if (!sticky) osdTimer = setTimeout(() => osd.classList.remove('show'), 4000);
+}
+
+function noSignal() {
+  clearTimeout(signalTimer);
+  showOsd('Sin señal. Deslice para cambiar de canal.', true, true);
+}
+
+async function startPlayback() {
+  try {
+    await video.play();
+  } catch (err) {
+    if (err.name !== 'NotAllowedError') return;
+    video.muted = true;
+    unmute.classList.add('show');
+    try { await video.play(); } catch {}
+  }
+}
+
+function stopCurrent() {
+  if (hls) { hls.destroy(); hls = null; }
+  video.removeAttribute('src');
+  video.load();
+}
+
+function playNative(url) {
+  video.src = url;
+  startPlayback();
+}
+
+function tune(number) {
+  const channel = channels[number - 1];
+  if (!channel) return;
+  if (current && current.number !== channel.number) previous = current;
+  current = channel;
+  remember('tv.canal', String(channel.number));
+
+  const id = ++tuneId;
+  stopCurrent();
+  if (!unmute.classList.contains('show')) video.muted = false;
+  showOsd(`${channel.group} · sintonizando…`, false, true);
+  markCurrent();
+  wake();
+  clearTimeout(signalTimer);
+  signalTimer = setTimeout(() => { if (id === tuneId) noSignal(); }, SIGNAL_TIMEOUT_MS);
+
+  if (!(window.Hls && Hls.isSupported())) {
+    playNative(channel.url);
+    return;
+  }
+  let mediaRecovered = false;
+  hls = new Hls({ manifestLoadingMaxRetry: 1, levelLoadingMaxRetry: 2 });
+  hls.on(Hls.Events.MANIFEST_PARSED, startPlayback);
+  hls.on(Hls.Events.ERROR, (_, data) => {
+    if (!data.fatal || id !== tuneId) return;
+    if (data.type === Hls.ErrorTypes.MEDIA_ERROR && !mediaRecovered) {
+      mediaRecovered = true;
+      hls.recoverMediaError();
+      return;
+    }
+    hls.destroy();
+    hls = null;
+    if (NATIVE_HLS) playNative(channel.url);
+    else noSignal();
+  });
+  hls.loadSource(channel.url);
+  hls.attachMedia(video);
+}
+
+video.addEventListener('playing', () => {
+  clearTimeout(signalTimer);
+  if (current) showOsd(current.group);
+});
+video.addEventListener('error', () => {
+  if (!hls && video.getAttribute('src')) noSignal();
+});
+
+function step(delta) {
+  if (!current) return;
+  const total = channels.length;
+  tune(((current.number - 1 + delta + total) % total) + 1);
+}
+
+function markCurrent() {
+  for (const el of list.querySelectorAll('.ch.current')) el.classList.remove('current');
+  const el = list.querySelector(`.ch[data-n="${current.number}"]`);
+  if (el) el.classList.add('current');
+}
+
+function renderList(filter = '') {
+  const needle = filter.trim().toLowerCase();
+  list.textContent = '';
+  let lastGroup = null;
+  for (const channel of channels) {
+    const haystack = `${channel.number} ${channel.name} ${channel.group}`.toLowerCase();
+    if (needle && !haystack.includes(needle)) continue;
+    if (channel.group !== lastGroup) {
+      lastGroup = channel.group;
+      const header = document.createElement('div');
+      header.className = 'group';
+      header.textContent = channel.group;
+      list.append(header);
+    }
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'ch';
+    button.dataset.n = channel.number;
+    const num = document.createElement('span');
+    num.className = 'num';
+    num.textContent = channel.number;
+    const name = document.createElement('span');
+    name.className = 'name';
+    name.textContent = channel.name;
+    button.append(num, name);
+    list.append(button);
+  }
+  if (!list.children.length) {
+    const empty = document.createElement('div');
+    empty.id = 'empty';
+    empty.textContent = 'Ningún canal coincide con la búsqueda.';
+    list.append(empty);
+  }
+  if (current) markCurrent();
+}
+
+function setPanel(open) {
+  document.body.classList.toggle('panel-open', open);
+  if (open) {
+    const el = list.querySelector('.ch.current');
+    if (el) el.scrollIntoView({ block: 'center' });
+  } else {
+    search.blur();
+  }
+  wake();
+}
+const panelOpen = () => document.body.classList.contains('panel-open');
+
+function typeDigit(digit) {
+  entryDigits = (entryDigits + digit).slice(-3);
+  entry.textContent = entryDigits;
+  entry.classList.add('show');
+  clearTimeout(entryTimer);
+  entryTimer = setTimeout(commitEntry, ENTRY_DELAY_MS);
+}
+
+function commitEntry() {
+  clearTimeout(entryTimer);
+  const number = Number(entryDigits);
+  entryDigits = '';
+  if (channels[number - 1]) {
+    entry.classList.remove('show');
+    tune(number);
+  } else {
+    entry.textContent = `${number} —`;
+    setTimeout(() => entry.classList.remove('show'), 1200);
+  }
+}
+
+let touchStart = null;
+stage.addEventListener('pointerdown', (event) => {
+  touchStart = { x: event.clientX, y: event.clientY };
+});
+stage.addEventListener('pointerup', (event) => {
+  if (!touchStart) return;
+  const dx = event.clientX - touchStart.x;
+  const dy = event.clientY - touchStart.y;
+  touchStart = null;
+  if (Math.max(Math.abs(dx), Math.abs(dy)) < SWIPE_MIN_PX) {
+    wake();
+    if (current) showOsd(osdMeta.textContent, osdMeta.classList.contains('error'));
+    return;
+  }
+  if (Math.abs(dy) > Math.abs(dx)) step(dy < 0 ? 1 : -1);
+  else if (dx > 0) setPanel(true);
+  else if (previous) tune(previous.number);
+});
+stage.addEventListener('pointercancel', () => { touchStart = null; });
+
+let panelStartX = null;
+const panel = document.getElementById('panel');
+panel.addEventListener('touchstart', (event) => { panelStartX = event.touches[0].clientX; }, { passive: true });
+panel.addEventListener('touchend', (event) => {
+  if (panelStartX !== null && event.changedTouches[0].clientX - panelStartX < -80) setPanel(false);
+  panelStartX = null;
+}, { passive: true });
+
+list.addEventListener('click', (event) => {
+  const button = event.target.closest('.ch');
+  if (!button) return;
+  tune(Number(button.dataset.n));
+  setPanel(false);
+});
+search.addEventListener('input', () => renderList(search.value));
+document.getElementById('menu-btn').addEventListener('click', () => setPanel(true));
+document.getElementById('close').addEventListener('click', () => setPanel(false));
+document.getElementById('scrim').addEventListener('click', () => setPanel(false));
+unmute.addEventListener('click', () => {
+  video.muted = false;
+  unmute.classList.remove('show');
+});
+document.addEventListener('mousemove', wake);
+
+document.addEventListener('keydown', (event) => {
+  if (event.target === search) {
+    if (event.key === 'Escape') setPanel(false);
+    return;
+  }
+  if (event.ctrlKey || event.altKey || event.metaKey) return;
+  const key = event.key.toLowerCase();
+  if (/^\d$/.test(key)) typeDigit(key);
+  else if (key === 'arrowup' || key === 'pageup') step(1);
+  else if (key === 'arrowdown' || key === 'pagedown') step(-1);
+  else if (key === 'enter') { if (entryDigits) commitEntry(); else setPanel(!panelOpen()); }
+  else if (key === 'escape') setPanel(false);
+  else if (key === 'arrowright') setPanel(true);
+  else if (key === 'arrowleft' || key === 'backspace') { if (previous) tune(previous.number); }
+  else if (key === 'f') {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  } else if (key === 'm') {
+    video.muted = !video.muted;
+    unmute.classList.toggle('show', video.muted);
+  } else return;
+  event.preventDefault();
+});
+
+async function init() {
+  const response = await fetch('channels.json');
+  const data = await response.json();
+  channels = data.map((channel, i) => ({ ...channel, number: i + 1 }));
+  renderList();
+  const saved = Number(recall('tv.canal'));
+  tune(channels[saved - 1] ? saved : 1);
+  setPanel(true);
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+init();
+</script>
+</body>
+</html>
